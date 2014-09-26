@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BugTracker.Models.Ticket>
+
+@{
+    ViewBag.Title = "TicketsView";
+}
+
+<h2>Tickets</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th colspan="11">
+            Tickets
+        </th>
+        <tr style="background-color:cornsilk; font-size:15px">
+        @foreach (var col in new [] {"Title", "Description", "Created", "Updated", "Project Id", "Type", "Priority", "Status", "User", "Assigned"})
+        {
+            <th>@Html.ActionLink(col, "Sort", new {property = col})</th>         
+        }
+       <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    @Html.HiddenFor(modelItem => item.Id)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Updated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriorityId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedToUserName)
+        </td>
+   </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Comment","Comments","Home")
+</p>
